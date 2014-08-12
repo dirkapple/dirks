@@ -1,0 +1,11 @@
+A 远端建立库
+B git clone dirname
+C git add file
+D git commit xxx -m"xxx"
+E git push origin master // 本地master推到远端origin分支
+F git push
+
+
+git branch branch_name //建立分支
+git checkout branch_name //切换分支
+git rebase branch_name //切换到某分支，然后将branch_name的变更应用到当前分支

@@ -1,0 +1,8 @@
+to_utf8.lo: /home/libofeng/work/php/php-5.2.6/ext/to_utf8/to_utf8.cpp
+	$(LIBTOOL) --mode=compile $(CXX)  -I. -I/home/libofeng/work/php/php-5.2.6/ext/to_utf8 $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /home/libofeng/work/php/php-5.2.6/ext/to_utf8/to_utf8.cpp -o to_utf8.lo 
+$(phplibdir)/to_utf8.la: ./to_utf8.la
+	$(LIBTOOL) --mode=install cp ./to_utf8.la $(phplibdir)
+
+./to_utf8.la: $(shared_objects_to_utf8) $(TO_UTF8_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_to_utf8) $(TO_UTF8_SHARED_LIBADD)
+

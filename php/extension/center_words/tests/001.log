@@ -1,0 +1,48 @@
+
+---- EXPECTED OUTPUT
+cntwd extension is available
+---- ACTUAL OUTPUT
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/to_utf8.so' - modules/to_utf8.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/to_utf8.so' - modules/to_utf8.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/cloudcrypt.so' - modules/cloudcrypt.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/cloudcrypt.so' - modules/cloudcrypt.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/curl.so' - modules/curl.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/curl.so' - modules/curl.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/gd.so' - modules/gd.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/gd.so' - modules/gd.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/memcache.so' - modules/memcache.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/memcache.so' - modules/memcache.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/zip.so' - modules/zip.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/zip.so' - modules/zip.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/keyword.so' - modules/keyword.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/keyword.so' - modules/keyword.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/pdo_mysql.so' - modules/pdo_mysql.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/pdo_mysql.so' - modules/pdo_mysql.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/qlogphp.so' - modules/qlogphp.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/qlogphp.so' - modules/qlogphp.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/cloudsim.so' - modules/cloudsim.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/cloudsim.so' - modules/cloudsim.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/symc.so' - modules/symc.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/symc.so' - modules/symc.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/tokenizer.so' - modules/tokenizer.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/tokenizer.so' - modules/tokenizer.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'modules/yaf.so' - modules/yaf.so: cannot open shared object file: No such file or directory in Unknown on line 0
+
+Warning: PHP Startup: Unable to load dynamic library 'modules/yaf.so' - modules/yaf.so: cannot open shared object file: No such file or directory in Unknown on line 0
+PHP Warning:  Module 'cntwd' already loaded in Unknown on line 0
+
+Warning: Module 'cntwd' already loaded in Unknown on line 0
+cntwd extension is available
+---- FAILED

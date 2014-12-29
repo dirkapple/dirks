@@ -1,0 +1,13 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("to_utf8", "for to_utf8 support", "no");
+
+// Otherwise, use ARG_ENABLE
+// ARG_ENABLE("to_utf8", "enable to_utf8 support", "no");
+
+if (PHP_TO_UTF8 != "no") {
+	EXTENSION("to_utf8", "to_utf8.c");
+}
+

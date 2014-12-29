@@ -1,0 +1,8 @@
+cntwd.lo: /home/libofeng/work/php/php-5.2.6/ext/cntwd/cntwd.cpp
+	$(LIBTOOL) --mode=compile $(CXX)  -I. -I/home/libofeng/work/php/php-5.2.6/ext/cntwd $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /home/libofeng/work/php/php-5.2.6/ext/cntwd/cntwd.cpp -o cntwd.lo 
+$(phplibdir)/cntwd.la: ./cntwd.la
+	$(LIBTOOL) --mode=install cp ./cntwd.la $(phplibdir)
+
+./cntwd.la: $(shared_objects_cntwd) $(CNTWD_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_cntwd) $(CNTWD_SHARED_LIBADD)
+

@@ -1,0 +1,13 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("cntwd", "for cntwd support", "no");
+
+// Otherwise, use ARG_ENABLE
+// ARG_ENABLE("cntwd", "enable cntwd support", "no");
+
+if (PHP_CNTWD != "no") {
+	EXTENSION("cntwd", "cntwd.c");
+}
+

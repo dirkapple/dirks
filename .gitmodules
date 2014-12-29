@@ -1,0 +1,3 @@
+[submodule "mysql/propel"]
+	path = mysql/propel
+	url = git://github.com/propelorm/Propel2.git

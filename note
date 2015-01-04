@@ -1,7 +1,3 @@
-# logger
-https://github.com/Seldaek/monolog   //日志
-{
-    "require": {
-        "katzgrau/klogger": "1.0.*"
-    }
-}
+twemproxy  memcache & redis proxy
+codis redis  redis分布式解决方案
+ssdb  redis 替代品，支持分布式解决方案

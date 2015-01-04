@@ -5,7 +5,6 @@ function libxml_xsd_error($xml = '', $xsd =''){
     if(!file_exists($xml) || !file_exists($xsd)){
         return false;
     }   
-    //º¯Êý½ûÓÃ±ê×¼µÄ libxml ´íÎó£¬²¢ÆôÓÃÓÃ»§´íÎó´¦Àí
     libxml_use_internal_errors(true);
     $xmlModel = new DOMDocument();
     $xmlModel->load($xml);

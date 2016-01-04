@@ -1,0 +1,307 @@
+" ==========================================
+" bundle 插件管理和配置项
+" ==========================================
+
+" 非兼容vi模式
+set nocompatible
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" ================ 插件管理 ================
+" 使用Vundle来管理插件
+" vim plugin bundle control, command model
+"     :BundleInstall     install 安装配置的插件
+"     :BundleInstall!    update  更新
+"     :BundleClean       remove plugin not in list 删除本地无用插件
+
+Bundle 'gmarik/vundle'
+" ================   基础   ================
+"Bundle 'Valloric/YouCompleteMe'
+"let g:ycm_key_list_select_completion = ['<Down>']
+"let g:ycm_key_list_previous_completion = ['<Up>']
+"let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
+"let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
+"let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
+"let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_goto_buffer_command = 'horizontal-split'
+"nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+
+" 黑名单,不启用
+"let g:ycm_filetype_blacklist = {
+"      \ 'tagbar' : 1,
+"      \ 'gitcommit' : 1,
+"      \}
+
+" 代码补全
+Bundle 'AutoComplPop'
+
+" 语法检查，支持多语言
+Bundle 'scrooloose/syntastic'
+
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_enable_highlighting=1
+
+" 语法检查器配置
+" let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+let g:syntastic_html_checkers=['tidy']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_phpcs_conf = "--tab-width=4"
+
+" 错误信息高亮
+highlight SyntasticErrorSign guifg=white guibg=black
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_loc_list_height = 5
+
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+        Errors
+    endif
+endfunction
+nnoremap <Leader>s :call ToggleErrors()<cr>
+
+
+" 自动补全单引号，双引号等
+Bundle 'Raimondi/delimitMate'
+
+" 自动补全html/xml标签
+Bundle 'docunext/closetag.vim'
+let g:closetag_html_style=1
+
+" 快速注释
+" [d] shift+v+方向键选中(默认当前行)
+"     -> ;cc      加上/* */注释
+"     -> ;cu      取消/* */注释
+"     -> ;c<space> 加上/解开 //注释
+"     -> ;cy      先复制再注解, p可以粘贴未注释前的代码
+Bundle 'scrooloose/nerdcommenter'
+let g:NERDSpaceDelims=1
+
+" 快速加入修改环绕字符
+" cs"' 单引号换双引号
+" ds"  删除双引号
+" ysiw" 连续字符添加双引号
+" yss"  整行加双引号
+" cst"  标签换双引号
+" veeS" 选中区域加双引号 按N个e
+" ys$" 当前到行尾, 引号引住
+Bundle 'tpope/vim-surround'
+" for repeat -> enhance surround.vim, . to repeat command
+Bundle 'tpope/vim-repeat'
+
+" 快速去行尾空格 ;<Space>
+Bundle 'bronson/vim-trailing-whitespace'
+map <leader><space> :FixWhitespace<cr>
+
+" 快速移动跳转
+" ;; + w/b 向后/向前 按分隔符跳
+" ;; + fa  查找'a',快速跳转定位到某个字符位置 再按; 继续查找当前行下一个a
+" ;;j      快速决定移动到下面哪行(比用行号/j移动快)
+" ;;k      快速移动到上面哪行
+" ;;l      本行, 向后快速移动
+" ;;h      本行, 向前快速移动
+" ;;.      重复上一次命令
+Bundle 'Lokaltog/vim-easymotion'
+let g:EasyMotion_smartcase = 1
+"map <Leader><leader>h <Plug>(easymotion-linebackward)
+"map <Leader><Leader>j <Plug>(easymotion-j)
+"map <Leader><Leader>k <Plug>(easymotion-k)
+"map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作
+map <Leader><leader>. <Plug>(easymotion-repeat)
+
+" 多光标选中编辑
+" [sd]
+" ctrl + m 开始选择 按多次选择多次
+" ctrl + p 向上取消
+" ctrl + x 跳过
+" Esc   退出
+Bundle 'terryma/vim-multiple-cursors'
+let g:multi_cursor_use_default_mapping=0
+" 默认快捷键
+let g:multi_cursor_next_key='<C-m>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
+" 选中区块
+" [sd]
+" + 增加选中范围
+" _ 减少选中范围
+"Bundle 'terryma/vim-expand-region'
+"map + <Plug>(expand_region_expand)
+"map _ <Plug>(expand_region_shrink)
+
+" 类似sublime的全局搜索
+Bundle "dyng/ctrlsf.vim"
+" 需要安装ack
+" In CtrlSF window:
+" 回车/o, 打开
+" t       在tab中打开(建议)
+" T - Lkie t but focus CtrlSF window instead of opened new tab.
+" mq - Quit CtrlSF window.
+let g:ctrlsf_ackprg = 'ack'
+nmap \ <Plug>CtrlSFCwordPath<CR>
+" let g:ctrlsf_position = 'below'
+" let g:ctrlsf_winsize = '30%'
+let g:ctrlsf_auto_close = 0
+let g:ctrlsf_confirm_save = 0
+" Note: cannot use <CR> or <C-m> for open
+" Use : <sapce> or <tab>
+let g:ctrlsf_mapping = {
+    \ "open"  : "<Space>",
+    \ "openb" : "O",
+    \ "tab"   : "t",
+    \ "tabb"  : "T",
+    \ "prevw" : "p",
+    \ "quit"  : "q",
+    \ "next"  : "<C-J>",
+    \ "prev"  : "<C-K>",
+    \ "pquit" : "q",
+    \ }
+
+" 同git diff,实时展示文件中修改的行
+Bundle 'airblade/vim-gitgutter'
+let g:gitgutter_map_keys = 0
+let g:gitgutter_enabled = 0
+let g:gitgutter_highlight_lines = 1
+nnoremap <leader>gd :GitGutterToggle<CR>
+
+" 查看回到某个历史状态
+Bundle 'sjl/gundo.vim'
+noremap <leader>h :GundoToggle<CR>
+" 彩色状态栏
+"Bundle 'https://github.com/Lokaltog/vim-powerline.git' 
+" config
+"let g:Powerline_sysbols='unicode'
+
+" 状态栏增强
+"Bundle 'bling/vim-airline'
+"let g:airline_powerline_fonts = 1
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
+"let g:airline_left_sep = '▶'
+"let g:airline_left_alt_sep = '❯'
+"let g:airline_right_sep = '◀'
+"let g:airline_right_alt_sep = '❮'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+" 是否打开tabline
+"let g:airline#extensions#tabline#enabled = 1
+
+" 括号显示增强
+Bundle 'kien/rainbow_parentheses.vim'
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" 主题 molokai
+Bundle 'tomasr/molokai'
+" monokai原始背景色
+let g:molokai_original = 1
+
+" 目录导航
+Bundle 'scrooloose/nerdtree'
+map <leader>n :NERDTreeToggle<CR>
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+" s/v 分屏打开文件
+let g:NERDTreeMapOpenSplit = 's'
+let g:NERDTreeMapOpenVSplit = 'v'
+" 导航同步多tab
+Bundle 'jistr/vim-nerdtree-tabs'
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" 关闭同步
+let g:nerdtree_tabs_synchronize_view=0
+let g:nerdtree_tabs_synchronize_focus=0
+" 自动开启nerdtree
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" 多tab导航
+"   ctrl+<space> 得到当前tab的buffer列表
+"   j/k     上下移动
+"   回车     跳转到
+"   v/V     vsp分屏打开, v会进入对应文件, V会保留在ctrlspace区域
+"   s/S     sp分屏打开
+"   l       展示/关闭tab列表
+"       j/k 或 [/] 上下移动
+"       =   给tab命名
+"       -   Move the current tab to the left (decrease its number)
+"       +   Move the current tab to the right (increase its number)
+"       Backspace Go back to Buffer List
+"   L   Jump to Tab List in Search Mode
+"   esc/q 退出
+"Bundle "szw/vim-ctrlspace"
+"let g:airline_exclude_preview = 1
+"hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
+"hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
+"hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
+"hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
+
+" 标签导航
+Bundle 'majutsushi/tagbar'
+nmap <F9> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+
+" go语言的tagbar配置
+" 1. install gotags 'go get -u github.com/jstemmer/gotags'
+" 2. make sure `gotags` in you shell PATH, you can call check it with `which gotags`
+" for gotags. work with tagbar
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }

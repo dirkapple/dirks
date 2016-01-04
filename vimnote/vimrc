@@ -1,0 +1,180 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	@author: 0x55
+"	@version: 0.1.1
+"	@website: http://www.vimnote.com/
+"	@readme: ReadMe.md
+"	@manual: http://vimrc.vimnote.com/manual/
+"	@last modify: 2015-08-01
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 修改leader键
+let mapleader = ';'
+let g:mapleader = ';'
+
+""""""""""""""""""
+" bundles 扩展
+""""""""""""""""""
+if filereadable(expand("~/vimnote/vimrc.bundles"))
+    source ~/vimnote/vimrc.bundles
+endif
+
+"""
+"Basic Config 基础配置
+"""
+set nocompatible    	" 关闭兼容模式
+syntax on		" 语法高亮
+set history=200		" vim操作历史
+
+set autoread		" 文件修改后自动载入
+" 检测文件类型
+"filetype plugin indent on
+filetype plugin on 
+filetype indent on
+set shortmess=atI	" 禁用欢迎界面
+
+set nobackup		" 取消备份
+set nowb		" 
+set noswapfile		" 关闭交换文件
+
+set t_ti= t_te=		" 退出vim内容仍显示在终端，用于复制
+
+set nu			" 显示行号
+set ruler		" 状态栏显示当前行号列号
+set showcmd		" 命令行显示命令
+set showmode		" 命令行显示当前模式
+
+set cursorcolumn	" 突出当前列
+set cursorline		" 突出当前行
+
+set mouse-=a		" 鼠标不启用
+" tab键的自动完成现在会忽略这些文件
+set wildignore=*.swp,*.bak,*.class,*.pyc,.svn
+set magic		" 正则magic
+" 退格键设置
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l	" 允许backspace和光标键跨越行边界
+set selection=inclusive	"  
+set selectmode=mouse,key
+
+set scrolloff=6		" 上下移动光标时，光标上下至少保留显示的行数
+
+"去掉烦人的声音
+set title		" 更改terminal标题
+set noerrorbells
+set novisualbell
+set tm=500
+set t_vb=
+
+" 状态栏设置
+set laststatus=2	" 总是显示状态行
+" 状态栏显示文件类型、编码等
+set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+
+
+set nowrap		" 取消换行
+
+""""""""
+" 搜索和匹配
+""""""""
+set showmatch		" 高亮匹配
+set matchtime=5		" 高亮时间
+set ignorecase		" 搜索时忽略大小写
+set hlsearch		" 高亮搜索命中
+set incsearch		" 增量搜索模式
+set smartcase		" 有一个或多个大写字母时大小写敏感
+""""""""
+" 代码折叠
+""""""""
+" 折叠方法
+" manual    手工折叠
+" indent    使用缩进表示折叠
+" expr      使用表达式定义折叠
+" syntax    使用语法定义折叠
+" diff      对没有更改的文本进行折叠
+" marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
+set foldmethod=marker
+set foldlevel=99
+set foldenable " 空格开关代码折叠
+"set foldclose=all " 自动关闭折叠
+let g:foldMethod = 0
+map <leader>zz :call ToggleFold()<cr>
+fun! ToggleFold()
+	if g:foldMethod == 0
+	    exe "normal! zM"
+	    let g:foldMethod = 1
+	else 
+	    exe "normal! zR"
+	    let g:foldMethod = 0
+	endif
+endfun
+""""""""
+" 相对行号
+""""""""
+"set relativenumber number
+"au FocusLost * :set norelativenumber number
+"au FocusGained * :set relativenumber
+" 插入模式下用绝对行号, 普通模式下用相对
+"autocmd InsertEnter * :set norelativenumber number
+"autocmd InsertLeave * :set relativenumber
+"function! NumberToggle()
+"    if(&relativenumber == 1)
+"        set norelativenumber number
+"    else
+"        set relativenumber
+"    endif
+"endfunc
+"nnoremap <C-n> :call NumberToggle()<cr>
+""""""""
+" 缩进和tab
+""""""""
+set smartindent
+set autoindent		" 自动缩进
+set tabstop=4		" tab键空格数
+set shiftwidth=4	" 每次缩进对应的空格数
+set softtabstop=4	" 退格键一次删掉4个空格
+set smarttab		" 设置制表符
+set expandtab		" tab转换为空格
+set shiftround		" 缩进时取整
+
+""""""""
+" 编码
+""""""""
+set encoding=utf-8  " 设置新文件编码
+" 自动判断编码时依次尝试
+set fileencodings=utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set helplang=cn     " 帮助为中文
+" 影响非图形界面下vim
+set termencoding=utf-8
+" 使用unix标准文件类型
+set ffs=unix,dos,mac
+" 如遇Unicode值大于255的文本，不必等到空格再折行。
+set formatoptions+=m
+" 合并两行中文时，不在中间加空格：
+set formatoptions+=B
+
+""""""""
+" 其他
+""""""""
+set completeopt=longest,menu
+set wildmenu
+
+set background=dark
+set t_Co=256
+colorscheme molokai
+""""""""""""""""""
+" PHP IDE
+""""""""""""""""""
+if filereadable(expand("~/vimnote/ide/php.vimrc"))
+    source ~/vimnote/ide/php.vimrc
+endif
+if filereadable(expand("~/vimnote/ide/css.vimrc"))
+    source ~/vimnote/ide/css.vimrc
+endif
+""""""""""""""""""
+"   HotKey 快捷键设置
+""""""""""""""""""
+
+
+
+
+
